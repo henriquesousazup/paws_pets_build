@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Phase install"
+  pre_build:
+    commands:
+      - echo "Phase pre_build"
+  build:
+    commands:
+      - mvn install
+  post_build:
+    commands:
+      - echo "Phase post_build"
+artifacts:
+  files:
+    - 'target/paws-pets-0.0.1-SNAPSHOT.jar'
