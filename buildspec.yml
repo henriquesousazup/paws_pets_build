@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Phase install"
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_TOKEN
   pre_build:
     commands:
       - echo "Phase pre_build"
