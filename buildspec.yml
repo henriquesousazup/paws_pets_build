@@ -6,13 +6,17 @@ phases:
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_TOKEN
   pre_build:
     commands:
-      - echo "Phase pre_build"
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i2c7a5l2
   build:
     commands:
       - mvn install
+      - docker build -t paws-pets .
+      - docker save paws-pets | gzip > paws-pets.tar.gz
+      - docker tag z-coders-henrique-sousa:latest public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
   post_build:
     commands:
-      - echo "Phase post_build"
+      - docker push public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
 artifacts:
   files:
     - 'target/paws-pets-0.0.1-SNAPSHOT.jar'
+    - 'paws-pets.tar.gz'
