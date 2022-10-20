@@ -17,9 +17,7 @@ import java.net.URI;
 @RequestMapping("/vacinas")
 public class VacinaController {
 
-    private final VacinaRepository vacinaRepository;
-
-    private Logger logger = LoggerFactory.getLogger(VacinaController.class);
+    private VacinaRepository vacinaRepository;
 
     @Autowired
     public VacinaController(VacinaRepository vacinaRepository) {
@@ -29,12 +27,10 @@ public class VacinaController {
     @PostMapping
     public ResponseEntity<?> cadastraVacina(@RequestBody @Valid VacinaRequest request, UriComponentsBuilder builder) {
 
-        Vacina novaVacina = request.toVacina();
-        vacinaRepository.save(novaVacina);
+        Vacina vacina = request.toVacina();
+        vacinaRepository.save(vacina);
 
-        logger.info("Vacina com id {} cadastrada com sucesso!", novaVacina.getId());
-
-        URI location = builder.path("/vacinas/{idVacina}").buildAndExpand(novaVacina.getId()).toUri();
+        URI location = builder.path("/vacinas/{idVacina}").buildAndExpand(vacina.getId()).toUri();
 
         return ResponseEntity.created(location).build();
     }

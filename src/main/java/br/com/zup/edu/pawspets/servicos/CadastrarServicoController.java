@@ -20,8 +20,6 @@ public class CadastrarServicoController {
 
     private final ServicoRepository servicoRepository;
 
-    private Logger logger = LoggerFactory.getLogger(CadastrarServicoController.class);
-
     public CadastrarServicoController(ServicoRepository servicoRepository) {
         this.servicoRepository = servicoRepository;
     }
@@ -33,8 +31,6 @@ public class CadastrarServicoController {
         Servico novoServico = servicoRequest.toModel();
 
         servicoRepository.save(novoServico);
-
-        logger.info("Serviço com id {} cadastrado com sucesso!", novoServico.getId());
 
         URI location = uriComponentsBuilder.path("/servicos/{id}").buildAndExpand(novoServico.getId()).toUri();
 

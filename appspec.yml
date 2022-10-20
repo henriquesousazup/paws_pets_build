@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: hello-app.tar.gz
+  - source: z-coders-henrique-sousa.tar.gz
     destination: /tmp
 hooks:
   ApplicationStop:

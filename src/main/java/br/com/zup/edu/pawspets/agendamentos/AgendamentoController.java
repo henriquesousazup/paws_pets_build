@@ -24,8 +24,6 @@ public class AgendamentoController {
 
     private final AgendamentoRepository agendamentoRepository;
 
-    private Logger logger = LoggerFactory.getLogger(AgendamentoController.class);
-
     public AgendamentoController(ServicoRepository servicoRepository,
                                  PetRepository petRepository,
                                  AgendamentoRepository agendamentoRepository) {
@@ -37,15 +35,13 @@ public class AgendamentoController {
     @PostMapping
     public ResponseEntity<?> cadastraAgendamento(@RequestBody @Valid CadastraAgendamentoRequest request,
                                                  UriComponentsBuilder uriComponentsBuilder) {
-        Agendamento novoAgendamento = request.toAgendamento(petRepository, servicoRepository);
+        Agendamento agendamento = request.toAgendamento(petRepository, servicoRepository);
 
-        agendamentoRepository.save(novoAgendamento);
-
-        logger.info("Agendamento com id {} cadastrado com sucesso!", novoAgendamento.getId());
+        agendamentoRepository.save(agendamento);
 
         URI location = uriComponentsBuilder
                 .path("/agendamentos/{id}")
-                .buildAndExpand(novoAgendamento.getId())
+                .buildAndExpand(agendamento.getId())
                 .toUri();
 
         return ResponseEntity.created(location).build();
