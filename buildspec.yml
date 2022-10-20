@@ -11,10 +11,10 @@ phases:
     commands:
       - mvn install
       - docker build -t paws-pets .
-      - docker tag z-coders-henrique-sousa:latest public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
+      - docker tag paws-pets:latest public.ecr.aws/i2c7a5l2/paws-pets:latest
   post_build:
     commands:
-      - docker push public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
+      - docker push public.ecr.aws/i2c7a5l2/paws-pets:latest
 artifacts:
   files:
     - 'target/paws-pets-0.0.1-SNAPSHOT.jar'
