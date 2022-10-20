@@ -4,6 +4,7 @@ import br.com.zup.edu.pawspets.pets.Pet;
 import br.com.zup.edu.pawspets.pets.PetRepository;
 import br.com.zup.edu.pawspets.servicos.Servico;
 import br.com.zup.edu.pawspets.servicos.ServicoRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 public class CadastraAgendamentoRequest {
     @NotNull
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime horario;
 
     @NotNull
