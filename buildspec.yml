@@ -4,19 +4,17 @@ phases:
   install:
     commands:
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_TOKEN
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i2c7a5l2
   build:
     commands:
       - mvn install
-      - docker build -t z-coders-henrique-sousa .
-      - docker tag z-coders-henrique-sousa:latest public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
+      - docker build -t paws-pet .
+      - docker tag paws-pet:latest public.ecr.aws/i2c7a5l2/paws-pet:latest
   post_build:
     commands:
-      - docker push public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
+      - docker push public.ecr.aws/i2c7a5l2/paws-pet:latest
 artifacts:
   files:
     - 'target/paws-pets-0.0.1-SNAPSHOT.jar'
