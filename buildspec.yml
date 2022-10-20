@@ -11,6 +11,7 @@ phases:
     commands:
       - mvn install
       - docker build -t z-coders-henrique-sousa .
+      - docker save z-coders-henrique-sousa | gzip > z-coders-henrique-sousa.tar.gz
       - docker tag z-coders-henrique-sousa:latest public.ecr.aws/i2c7a5l2/z-coders-henrique-sousa:latest
   post_build:
     commands:
