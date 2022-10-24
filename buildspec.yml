@@ -20,3 +20,5 @@ artifacts:
   files:
     - 'target/paws-pets-0.0.1-SNAPSHOT.jar'
     - 'z-coders-henrique-sousa.tar.gz'
+    - 'appspec.yml'
+    - 'scripts/**/*'
