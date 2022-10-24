@@ -16,3 +16,4 @@ Temos algumas tarefas para lançar a primeira versão do Pet Shop:
 6. Criar o arquivo de `buildspec`
 
 > Lembrando que deve ser usado as migrações pelo Flyway para o projeto em produção.
+> 
