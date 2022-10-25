@@ -16,7 +16,7 @@ hooks:
     - location: scripts/start_container.sh
       timeout: 10
       runas: ec2-user
-  ValidateService:
-    - location: scripts/check_container.sh
-      timeout: 10
-      runas: ec2-user
+#  ValidateService:
+#    - location: scripts/check_container.sh
+#      timeout: 10
+#      runas: ec2-user
