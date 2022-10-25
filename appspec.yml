@@ -1,18 +1,22 @@
 version: 0.0
 os: linux
 files:
-  - source: paws-pets-0.0.1-SNAPSHOT.jar
+  - source: z-coders-henrique-sousa.tar.gz
     destination: /tmp
 hooks:
   ApplicationStop:
-    - location: scripts/java/stop.sh
+    - location: scripts/stop_container.sh
       timeout: 20
       runas: ec2-user
+  AfterInstall:
+    - location: scripts/load_image.sh
+      timeout: 10
+      runas: ec2-user
   ApplicationStart:
-    - location: scripts/java/start.sh
+    - location: scripts/start_container.sh
       timeout: 10
       runas: ec2-user
   ValidateService:
-    - location: scripts/java/validate.sh
+    - location: scripts/check_container.sh
       timeout: 10
       runas: ec2-user
