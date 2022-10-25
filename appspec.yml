@@ -19,4 +19,4 @@ hooks:
   ValidateService:
     - location: scripts/check_container.sh
       timeout: 10
-      runas: root
+      runas: ec2-user
